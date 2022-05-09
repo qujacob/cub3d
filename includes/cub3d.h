@@ -10,14 +10,15 @@
 **
 */
 
-# include "libft.h"
 # include "mlx.h"
-# include <sys/types.h>
-# include <sys/stat.h>
+# include "libft.h"
+# include "structs.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <errno.h>
 # include <string.h>
+# include <sys/stat.h>
+# include <sys/types.h>
 
 /*
 **		┌----------------------------------------------------------------┐
@@ -28,6 +29,15 @@
 # define TRUE 1
 # define FALSE 0
 
+# define ESC 65307
+# define DEL 65288
+# define QUIT 79708224
+
+# define LEFT 65361
+# define UP 65362
+# define RIGHT 65363
+# define DOWN 65364
+
 /*
 **		┌----------------------------------------------------------------┐
 **		|				 												 |
@@ -36,6 +46,8 @@
 **		└----------------------------------------------------------------┘
 */
 
+void	parse_map(t_cub *cub);
 
+void	error_message(char *message, int ret);
 
 #endif
