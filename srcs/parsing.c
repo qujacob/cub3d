@@ -43,38 +43,6 @@ int	check_is_elem(t_cub *cub, char *line)
 	return (1);
 }
 
-void	get_file(t_cub *cub)
-{
-	char	*line;
-
-	line = get_next_line(cub->fd);
-	if (!line)
-		free_message(cub, "Error : Parsing.\n", 1);
-	while (1)
-	{
-		if (check_is_elem(cub, line))
-		{
-			break ;
-		}
-		free(line);
-		line = get_next_line(cub->fd);
-		if (!line)
-			free_message(cub, "Error : Parsing.\n", 1);
-	}
-}
-
-void	open_file(t_cub *cub)
-{
-	char	*needle;
-
-	needle = ft_strstr(cub->file, ".cub");
-	if (!needle || ft_strcmp(needle, ".cub"))
-		error_message("Error : Invalid map name.\n", 1);
-	cub->fd = open(cub->file, O_RDWR);
-	if (cub->fd == -1)
-		error_message("Error : File doesn't exist.\n", 1);
-}
-
 int	recove_x_size(t_cub *cub)
 {
 	int		size;
@@ -84,7 +52,7 @@ int	recove_x_size(t_cub *cub)
 	size = 0;
 	fd = open(cub->file, O_RDONLY);
 	if (fd == -1)
-		free_message(cub, "error parsing\n", 1);
+		free_message(cub, "Error : Parsing\n", 1);
 	str = get_next_line(fd);
 	while (str && (check_is_elem(cub, str) || str[0] == '\n'))
 	{
@@ -105,6 +73,67 @@ int	recove_x_size(t_cub *cub)
 	return (size);
 }
 
+int	check_is_map(t_cub *cub, char *line)
+{
+	int	i;
+
+	i = -1;
+	while (line[++i])
+	{
+		if (line[i] != ' ' && line[i] != '0' && line[i] != '1' && \
+		line[i] != 'N' && line[i] != 'S' && line[i] != 'E' && line[i] != 'W')
+			return (0);
+	}
+	return (1);
+}
+
+int	fill_map(t_cub *cub, char *line)
+{
+	if (!check_is_map(cub, line))
+		return (0);
+	return (1);
+}
+
+void	get_file(t_cub *cub)
+{
+	char	*line;
+
+	line = get_next_line(cub->fd);
+	while (line)
+	{
+		if (cub->map)
+			free_message(cub, "Error : Parsing\n", 1);
+		if (!check_is_elem(cub, line))
+		{
+			if (fill_map(cub, line) == -1)
+			{
+				free(line);
+				free_message(cub, "Error : Parsing\n", 1);
+			}
+		}
+		else if (line[0] != '\n')
+		{
+			free(line);
+			free_message(cub, "Error : Parsing\n", 1);
+		}
+		free(line);
+		line = get_next_line(cub->fd);
+	}
+	if (!cub->map)
+		free_message(cub, "Error : Parsing\n", 1);
+}
+
+void	open_file(t_cub *cub)
+{
+	char	*needle;
+
+	needle = ft_strstr(cub->file, ".cub");
+	if (!needle || ft_strcmp(needle, ".cub"))
+		error_message("Error : Invalid map name.\n", 1);
+	cub->fd = open(cub->file, O_RDWR);
+	if (cub->fd == -1)
+		error_message("Error : File doesn't exist.\n", 1);
+}
 
 void	parse_map(t_cub *cub)
 {

@@ -48,6 +48,7 @@
 
 void	parse_map(t_cub *cub);
 
+void    free_cub(t_cub *cub);
 void	error_message(char *message, int ret);
 void	free_message(t_cub *cub, char *message, int ret);
 
