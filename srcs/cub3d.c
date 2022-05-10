@@ -25,7 +25,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	init_cub(&cub, av[1]);
-	parse_map(&cub);
+	parse_file(&cub);
 	free_cub(&cub);
 	return (0);
 }

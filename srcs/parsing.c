@@ -1,7 +1,28 @@
 #include "cub3d.h"
 
+void	do_elem_2(t_cub *cub, char *line)
+{
+	if (!ft_strncmp("EA ", line, 3))
+	{
+		cub->ea = ft_strdup(&line[3]);
+		if (!cub->ea)
+			free_message(cub, "Error : Parsing\n", 1);
+	}
+	else if (!ft_strncmp("F ", line, 2))
+	{
+		cub->f = ft_strdup(&line[2]);
+		if (!cub->f)
+			free_message(cub, "Error : Parsing\n", 1);
+	}
+	else if (!ft_strncmp("C ", line, 2))
+	{
+		cub->c = ft_strdup(&line[2]);
+		if (!cub->c)
+			free_message(cub, "Error : Parsing\n", 1);
+	}
+}
 
-int	check_is_elem(t_cub *cub, char *line)
+void	do_elem(t_cub *cub, char *line)
 {
 	if (!ft_strncmp("NO ", line, 3))
 	{
@@ -21,27 +42,25 @@ int	check_is_elem(t_cub *cub, char *line)
 		if (!cub->we)
 			free_message(cub, "Error : Parsing\n", 1);
 	}
-	else if (!ft_strncmp("EA ", line, 3))
-	{
-		cub->ea = ft_strdup(&line[3]);
-		if (!cub->ea)
-			free_message(cub, "Error : Parsing\n", 1);
-	}
-	else if (!ft_strncmp("F ", line, 2))
-	{
-		cub->f = ft_strdup(&line[2]);
-		if (!cub->f)
-			free_message(cub, "Error : Parsing\n", 1);
-	}
-	else if (!ft_strncmp("C ", line, 2))
-	{
-		cub->c = ft_strdup(&line[2]);
-		if (!cub->c)
-			free_message(cub, "Error : Parsing\n", 1);
-	}
 	else
-		return (0);
-	return (1);
+		do_elem_2(cub, line);
+}
+
+int	check_is_elem(char *line)
+{
+	if (!ft_strncmp("NO ", line, 3))
+		return (1);
+	else if (!ft_strncmp("SO ", line, 3))
+		return (1);
+	else if (!ft_strncmp("WE ", line, 3))
+		return (1);
+	else if (!ft_strncmp("EA ", line, 3))
+		return (1);
+	else if (!ft_strncmp("F ", line, 2))
+		return (1);
+	else if (!ft_strncmp("C ", line, 2))
+		return (1);
+	return (0);
 }
 
 void	get_file(t_cub *cub)
@@ -51,21 +70,16 @@ void	get_file(t_cub *cub)
 	line = get_next_line(cub->fd);
 	while (line)
 	{
-		if (cub->map)
-			free_message(cub, "Error : Parsing4\n", 1);
-		if (!check_is_elem(cub, line))
+		if (!check_is_elem(line) && line[0] != '\n')
 		{
-			if (fill_map(cub, line) == -1)
+			if (fill_map(cub, &line) == -1)
 			{
 				free(line);
 				free_message(cub, "Error : Parsing3\n", 1);
 			}
 		}
-		else if (!check_is_elem(cub, line) && line[0] != '\n')
-		{
-			free(line);
-			free_message(cub, "Error : Parsing1\n", 1);
-		}
+		else
+			do_elem(cub, line);
 		if (line)
 			free(line);
 		line = get_next_line(cub->fd);
@@ -74,7 +88,7 @@ void	get_file(t_cub *cub)
 		free_message(cub, "Error : Parsing2\n", 1);
 }
 
-void	open_file(t_cub *cub)
+void	parse_file(t_cub *cub)
 {
 	char	*needle;
 
@@ -84,15 +98,10 @@ void	open_file(t_cub *cub)
 	cub->fd = open(cub->file, O_RDWR);
 	if (cub->fd == -1)
 		error_message("Error : File doesn't exist.\n", 1);
-}
-
-void	parse_map(t_cub *cub)
-{
-	open_file(cub);
 	cub->size_x = recove_x_size(cub);
 	get_file(cub);
-	for (int i = 0; i < cub->size_y; i++)
-		printf("%s\n",cub->map[i]);
-
+	for (int i = 0; cub->map[i]; i++)
+		printf("%s\n", cub->map[i]);
+	// check_validity(cub);
 	close(cub->fd);
 }

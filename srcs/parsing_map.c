@@ -1,19 +1,31 @@
 #include "cub3d.h"
 
+void	check_validity(t_cub *cub)
+{
+	int	j;
+
+	j = -1;
+	while (++j < cub->size_y)
+	{
+	if (!check_is_map(cub->map[j]))
+		break ;
+	}
+}
+
 void	create_map(t_cub *cub)
 {
-	int		x;
+	int	x;
 
 	x = -1;
 	cub->map = (char **)malloc(sizeof(char *) * (cub->size_y + 1));
 	if (!cub->map)
-		error_message("Error : malloc problems.\n", 1);
+		error_message("Error : Malloc.\n", 1);
 	cub->map[cub->size_y] = NULL;
 	while (++x < cub->size_y)
 	{
 		cub->map[x] = malloc(cub->size_x + 1);
 		if (!cub->map[x])
-			error_message("Error : malloc problems.\n", 1);
+			error_message("Error : Malloc.\n", 1);
 	}
 }
 
@@ -28,7 +40,7 @@ int	recove_x_size(t_cub *cub)
 	if (fd == -1)
 		free_message(cub, "Error : Parsing\n", 1);
 	str = get_next_line(fd);
-	while (str && (check_is_elem(cub, str) || str[0] == '\n'))
+	while (str && (check_is_elem(str) || str[0] == '\n'))
 	{
 		if (str)
 			free(str);
@@ -38,8 +50,7 @@ int	recove_x_size(t_cub *cub)
 	{
 		if (ft_strlen(str) > (size_t)size)
 			size = ft_strlen(str);
-		if (str)
-			free(str);
+		free(str);
 		str = get_next_line(fd);
 		cub->size_y++;
 	}
@@ -47,12 +58,13 @@ int	recove_x_size(t_cub *cub)
 	return (size);
 }
 
-int	check_is_map(t_cub *cub, char *line)
+int	check_is_map(char *line)
 {
 	int	i;
-	(void)cub;
 
 	i = 0;
+	if (line[i] == '\n')
+		return (0);
 	while (line[i] && line[i] != '\n')
 	{
 		if (line[i] != ' ' && line[i] != '0' && line[i] != '1' && \
@@ -63,30 +75,30 @@ int	check_is_map(t_cub *cub, char *line)
 	return (1);
 }
 
-int	fill_map(t_cub *cub, char *line)
+int	fill_map(t_cub *cub, char **line)
 {
 	int	i;
 	int	j;
 
 	j = -1;
-	if (!check_is_map(cub, line))
+	if (!check_is_map(*line))
 		return (0);
 	create_map(cub);
-	if (cub->map)
-	while(++j < cub->size_y && line)
+	while (*line && ++j < cub->size_y)
 	{
 		i = -1;
 		while (++i < cub->size_x)
 		{
-			if ( i >= (int)ft_strlen(line) || line[i] == ' ')
+			if (i >= (int)ft_strlen(*line) || (*line)[i] == ' ' \
+			|| (*line)[i] == '\n')
 				cub->map[j][i] = '3';
-			else if (line[i] != '\n')
-				cub->map[j][i] = line[i];
+			else if ((*line)[i] != '\n')
+				cub->map[j][i] = (*line)[i];
 		}
 		cub->map[j][i] = '\0';
-		if (line)
-			free(line);
-		line = get_next_line(cub->fd);
+		if (*line)
+			free(*line);
+		*line = get_next_line(cub->fd);
 	}
 	return (1);
 }

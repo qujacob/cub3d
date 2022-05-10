@@ -5,7 +5,7 @@ void	free_map(char **map)
 	int	i;
 
 	i = -1;
-	while (++i)
+	while (map[++i])
 		free(map[i]);
 	free(map);
 }
