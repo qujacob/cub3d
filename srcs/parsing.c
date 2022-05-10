@@ -1,5 +1,21 @@
 #include "cub3d.h"
 
+void	create_map(t_cub *cub)
+{
+	int		x;
+
+	x = -1;
+	cub->map = (char **)malloc(sizeof(char *) * cub->size_y);
+	if (!cub->map)
+		error_message("Error : malloc problems.\n", 1);
+	while (++x < cub->size_x)
+	{
+		cub->map[x] = malloc(cub->size_x + 1);
+		if (!cub->map[x])
+			error_message("Error : malloc problems.\n", 1);
+	}
+}
+
 int	check_is_elem(t_cub *cub, char *line)
 {
 	if (!ft_strncmp("NO ", line, 3))
@@ -76,21 +92,44 @@ int	recove_x_size(t_cub *cub)
 int	check_is_map(t_cub *cub, char *line)
 {
 	int	i;
+	(void)cub;
 
-	i = -1;
-	while (line[++i])
+	i = 0;
+	while (line[i] && line[i] != '\n')
 	{
 		if (line[i] != ' ' && line[i] != '0' && line[i] != '1' && \
 		line[i] != 'N' && line[i] != 'S' && line[i] != 'E' && line[i] != 'W')
 			return (0);
+		i++;
 	}
 	return (1);
 }
 
 int	fill_map(t_cub *cub, char *line)
 {
+	int	i;
+	int	j;
+
+	j = -1;
 	if (!check_is_map(cub, line))
 		return (0);
+	create_map(cub);
+	if (cub->map)
+	while(++j < cub->size_y && line)
+	{
+		i = -1;
+		while (++i < cub->size_x)
+		{
+			if (line[i] == ' ' || i >= (int)ft_strlen(line))
+				cub->map[j][i] = '3';
+			else if (line[i] != '\n')
+				cub->map[j][i] = line[i];
+		}
+		cub->map[j][i] = '\0';
+		if (line)
+			free(line);
+		line = get_next_line(cub->fd);
+	}
 	return (1);
 }
 
@@ -102,25 +141,26 @@ void	get_file(t_cub *cub)
 	while (line)
 	{
 		if (cub->map)
-			free_message(cub, "Error : Parsing\n", 1);
+			free_message(cub, "Error : Parsing4\n", 1);
 		if (!check_is_elem(cub, line))
 		{
 			if (fill_map(cub, line) == -1)
 			{
 				free(line);
-				free_message(cub, "Error : Parsing\n", 1);
+				free_message(cub, "Error : Parsing3\n", 1);
 			}
 		}
-		else if (line[0] != '\n')
+		else if (!check_is_elem(cub, line) && line[0] != '\n')
 		{
 			free(line);
-			free_message(cub, "Error : Parsing\n", 1);
+			free_message(cub, "Error : Parsing1\n", 1);
 		}
-		free(line);
+		if (line)
+			free(line);
 		line = get_next_line(cub->fd);
 	}
 	if (!cub->map)
-		free_message(cub, "Error : Parsing\n", 1);
+		free_message(cub, "Error : Parsing2\n", 1);
 }
 
 void	open_file(t_cub *cub)
@@ -138,8 +178,10 @@ void	open_file(t_cub *cub)
 void	parse_map(t_cub *cub)
 {
 	open_file(cub);
-	get_file(cub);
 	cub->size_x = recove_x_size(cub);
-	printf("x = %d, y = %d\n", cub->size_x, cub->size_y);
+	get_file(cub);
+	for (int i = 0; i < cub->size_y; i++)
+		printf("%s\n",cub->map[i]);
+
 	close(cub->fd);
 }
