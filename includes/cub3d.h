@@ -47,6 +47,12 @@
 */
 
 void	parse_map(t_cub *cub);
+int	    check_is_elem(t_cub *cub, char *line);
+
+void	create_map(t_cub *cub);
+int	    recove_x_size(t_cub *cub);
+int	    check_is_map(t_cub *cub, char *line);
+int	    fill_map(t_cub *cub, char *line);
 
 void    free_cub(t_cub *cub);
 void	error_message(char *message, int ret);
