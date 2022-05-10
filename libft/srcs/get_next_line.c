@@ -3,93 +3,95 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qujacob <qujacob@student.42.fr>            +#+  +:+       +#+        */
+/*   By: madiallo <madiallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/02 16:41:11 by qujacob           #+#    #+#             */
-/*   Updated: 2021/12/15 18:51:05 by qujacob          ###   ########.fr       */
+/*   Created: 2021/09/24 15:39:27 by madiallo          #+#    #+#             */
+/*   Updated: 2021/11/04 19:49:39 by madiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "get_next_line.h"
 
-static int	ft_free(char **s, int ret_val)
+static char	*ft_free_str(char *save)
 {
-	if (s && *s)
-	{
-		free(*s);
-		*s = NULL;
-	}
-	return (ret_val);
+	if (save)
+		free(save);
+	return (NULL);
 }
 
-static char	*ft_before_nl(char *buffer)
-{
-	int		i;
-	char	*tmp;
-
-	i = 0;
-	while (buffer[i] && buffer[i] != '\n')
-		i++;
-	tmp = (char *)malloc(sizeof(char) * (i + 1));
-	if (!tmp)
-		return (NULL);
-	tmp[i] = '\0';
-	while (--i >= 0)
-		tmp[i] = buffer[i];
-	return (tmp);
-}
-
-static char	*ft_init(char *buffer, char **save, int fd)
+static void	ft_reload_buffer(char *str)
 {
 	int	i;
+	int	j;
+
+	j = 0;
+	i = 0;
+	while (str[j] && str[j] != '\n')
+		j++;
+	if (str[j] == '\n')
+	{
+		while (str[j++])
+			str[i++] = str[j];
+		while (str[i])
+			str[i++] = '\0';
+	}
+	else
+		while (str[i])
+			str[i++] = '\0';
+}
+
+static char	*ft_put_line(char *str)
+{
+	char	*line;
+	int		i;
 
 	i = 0;
-	if (fd < 0 || fd >= 1024 || 1024 < 1 || read(fd, NULL, 0))
-		return (NULL);
-	while (i < 1024 + 1)
-		buffer[i++] = '\0';
-	if (!(*save))
-		*save = ft_strdup("");
-	return (*save);
-}
-
-static char	*ft_cut_save(char *save)
-{
-	char	*tmp;
-
-	tmp = ft_strdup(ft_strchr_nl(save));
-	if (!tmp)
-		return (NULL);
-	free(save);
-	save = NULL;
-	return (tmp);
-}
-
-int	get_next_line(int fd, char **line)
-{
-	static char	*save;
-	char		buffer[1024 + 1];
-	int			size;
-
-	if (!ft_init(buffer, &save, fd))
-		return (-1);
-	size = 1;
-	while (!ft_is_nl(buffer) && !ft_is_nl(save) && size)
+	while (str[i] && str[i] != '\n')
+		i++;
+	line = (char *)malloc(sizeof(char) * (i + 2));
+	if (!line)
+		return (ft_free_str(str));
+	i = 0;
+	while (str[i] && str[i] != '\n')
 	{
-		size = read(fd, buffer, 1024);
-		if (size > -1)
-			buffer[size] = '\0';
-		if (size <= 0)
-		{
-			if (size == 0)
-				*line = ft_strdup(save);
-			return (ft_free(&save, size));
-		}
-		save = ft_strjoin_gnl(save, buffer);
+		line[i] = str[i];
+		i++;
 	}
-	*line = ft_before_nl(save);
-	save = ft_cut_save(save);
-	if (!(*line) || !save)
-		return (ft_free(&save, -1));
-	return (1);
+	if (str[i] == '\n')
+	{
+		line[i] = str[i];
+		i++;
+	}
+	line[i] = '\0';
+	ft_free_str(str);
+	return (line);
+}
+
+char	*get_next_line(int fd)
+{
+	static char	buffer[1024][BUFFER_SIZE + 1];
+	int			bytes;
+	char		*line;
+
+	bytes = 1;
+	line = NULL;
+	if (BUFFER_SIZE < 1 || fd < 0 || read(fd, "", 0) == -1)
+		return (ft_free_str(line));
+	line = ft_strjoin_gnl(line, buffer[fd]);
+	if (!line)
+		return (NULL);
+	while (bytes > 0 && !ft_strchr_gnl(line, '\n'))
+	{
+		bytes = read(fd, buffer[fd], BUFFER_SIZE);
+		buffer[fd][bytes] = '\0';
+		line = ft_strjoin_gnl(line, buffer[fd]);
+		if (!line)
+			return (ft_free_str(line));
+	}
+	if (*line)
+		line = ft_put_line(line);
+	if (bytes < 0 || !line || !*line)
+		return (ft_free_str(line));
+	ft_reload_buffer(buffer[fd]);
+	return (line);
 }

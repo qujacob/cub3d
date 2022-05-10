@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thzeribi <thzeribi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: madiallo <madiallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 18:35:20 by qujacob           #+#    #+#             */
-/*   Updated: 2022/04/11 18:37:33 by thzeribi         ###   ########.fr       */
+/*   Updated: 2022/05/10 14:35:32 by madiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ void	ft_putstrnl(char *str);
 char	*ft_strstr(char *str, char *to_find);
 char	**free_strs(char **strs, size_t index);
 
-int		get_next_line(int fd, char **line);
-int		ft_is_nl(const char *s);
-char	*ft_strchr_nl(const char *s);
-char	*ft_strjoin_gnl(char const *s1, char const *s2);
+int		ft_strlen_gnl(char *s);
+char	*ft_strchr_gnl(char *s, int c);
+char	*ft_strjoin_gnl(char *s1, char	*s2);
+char	*get_next_line(int fd);
 
 #endif

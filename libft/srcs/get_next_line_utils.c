@@ -3,69 +3,78 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qujacob <qujacob@student.42.fr>            +#+  +:+       +#+        */
+/*   By: madiallo <madiallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/02 16:41:04 by qujacob           #+#    #+#             */
-/*   Updated: 2021/12/15 18:53:25 by qujacob          ###   ########.fr       */
+/*   Created: 2021/09/24 15:40:18 by madiallo          #+#    #+#             */
+/*   Updated: 2022/05/10 14:33:39 by madiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: madiallo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/24 15:40:18 by madiallo          #+#    #+#             */
+/*   Updated: 2021/09/24 15:40:18 by madiallo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-char	*ft_strchr_nl(const char *s)
+#include "get_next_line.h"
+
+int	ft_strlen_gnl(char *s)
 {
-	char	*copy;
+	int	i;
 
-	copy = (char *)s;
-	while (*copy)
+	i = 0;
+	if (s)
+		while (s[i])
+			i++;
+	return (i);
+}
+
+char	*ft_strchr_gnl(char *s, int c)
+{
+	if (!s)
+		return (NULL);
+	while (*s)
 	{
-		if (*copy == '\n')
-			return (++copy);
-		copy++;
+		if (*s == c)
+			return ((char *)s);
+		s++;
 	}
+	if (*s == '\0' && c == '\0')
+		return (NULL);
 	return (NULL);
 }
 
-int	ft_is_nl(const char *s)
+char	*ft_strjoin_gnl(char *s1, char	*s2)
 {
-	char	*copy;
-
-	if (!s)
-		return (0);
-	copy = (char *)s;
-	while (*copy)
-	{
-		if (*copy == '\n')
-			return (1);
-		copy++;
-	}
-	return (0);
-}
-
-char	*ft_strjoin_gnl(char const *s1, char const *s2)
-{
-	char	*final;
-	size_t	size;
-	int		i;
-	int		j;
+	char	*join;
+	char	*ptr;
+	char	*temp;
 
 	if (!s1 && !s2)
 		return (NULL);
-	size = ft_strlen(s1) + ft_strlen(s2);
-	final = (char *)malloc(sizeof(char) * (size + 1));
-	if (final == NULL)
+	join = (char *)malloc(((ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1)
+				* sizeof(char)));
+	if (!join)
 		return (NULL);
-	i = -1;
+	ptr = join;
 	if (s1)
 	{
-		while (s1[++i])
-			final[i] = s1[i];
-		free((char *)s1);
-		s1 = NULL;
+		temp = s1;
+		while (*s1)
+		{
+			*join++ = *s1++;
+		}
+		free(temp);
 	}
-	j = -1;
-	while (s2 && s2[++j])
-		final[i + j] = s2[j];
-	final[i + j] = '\0';
-	return (final);
+	if (*s2)
+		while (*s2)
+			*join++ = *s2++;
+	*join = '\0';
+	return (ptr);
 }
