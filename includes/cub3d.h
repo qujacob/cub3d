@@ -7,12 +7,12 @@
 **		|			 			INCLUDE AND DEFINE						 |
 **		|				 												 |
 **		└----------------------------------------------------------------┘
-**
 */
 
 # include "mlx.h"
 # include "libft.h"
 # include "structs.h"
+# include <math.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <errno.h>
@@ -49,5 +49,6 @@
 void	parse_map(t_cub *cub);
 
 void	error_message(char *message, int ret);
+void	free_message(t_cub *cub, char *message, int ret);
 
 #endif

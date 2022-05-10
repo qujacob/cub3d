@@ -7,6 +7,12 @@ void	init_cub(t_cub *cub, char *file)
 	cub->map = NULL;
 	cub->size_x = 0;
 	cub->size_y = 0;
+	cub->no = NULL;
+	cub->so = NULL;
+	cub->we = NULL;
+	cub->ea = NULL;
+	cub->f = NULL;
+	cub->c = NULL;
 }
 
 int	main(int ac, char **av)

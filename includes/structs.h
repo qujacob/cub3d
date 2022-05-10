@@ -8,6 +8,12 @@ typedef struct s_cub
 	char	**map;
 	int		size_x;
 	int		size_y;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	char	*f;
+	char	*c;
 }	t_cub;
 
 #endif
