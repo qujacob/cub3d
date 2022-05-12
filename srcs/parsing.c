@@ -6,7 +6,7 @@ void	do_elem_2(t_cub *cub, char *line)
 	{
 		if (cub->ea)
 			free_message(cub, "Error : Double.\n", 1);
-		cub->ea = ft_strdup(&line[3]);
+		cub->ea = ft_strdup_no_nl(&line[3]);
 		if (!cub->ea)
 			free_message(cub, "Error : Parsing\n", 1);
 	}
@@ -14,7 +14,7 @@ void	do_elem_2(t_cub *cub, char *line)
 	{
 		if (cub->f)
 			free_message(cub, "Error : Double.\n", 1);
-		cub->f = ft_strdup(&line[2]);
+		cub->f = ft_strdup_no_nl(&line[2]);
 		if (!cub->f)
 			free_message(cub, "Error : Parsing\n", 1);
 	}
@@ -22,7 +22,7 @@ void	do_elem_2(t_cub *cub, char *line)
 	{
 		if (cub->c)
 			free_message(cub, "Error : Double.\n", 1);
-		cub->c = ft_strdup(&line[2]);
+		cub->c = ft_strdup_no_nl(&line[2]);
 		if (!cub->c)
 			free_message(cub, "Error : Parsing\n", 1);
 	}
@@ -34,7 +34,7 @@ void	do_elem(t_cub *cub, char *line)
 	{
 		if (cub->no)
 			free_message(cub, "Error : Double.\n", 1);
-		cub->no = ft_strdup(&line[3]);
+		cub->no = ft_strdup_no_nl(&line[3]);
 		if (!cub->no)
 			free_message(cub, "Error : Parsing\n", 1);
 	}
@@ -42,7 +42,7 @@ void	do_elem(t_cub *cub, char *line)
 	{
 		if (cub->so)
 			free_message(cub, "Error : Double.\n", 1);
-		cub->so = ft_strdup(&line[3]);
+		cub->so = ft_strdup_no_nl(&line[3]);
 		if (!cub->so)
 			free_message(cub, "Error : Parsing\n", 1);
 	}
@@ -50,7 +50,7 @@ void	do_elem(t_cub *cub, char *line)
 	{
 		if (cub->we)
 			free_message(cub, "Error : Double.\n", 1);
-		cub->we = ft_strdup(&line[3]);
+		cub->we = ft_strdup_no_nl(&line[3]);
 		if (!cub->we)
 			free_message(cub, "Error : Parsing\n", 1);
 	}

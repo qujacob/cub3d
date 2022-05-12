@@ -14,18 +14,12 @@ void	free_cub(t_cub *cub)
 {
 	if (cub->map)
 		free_map(cub->map);
-	if (cub->no)
-		free(cub->no);
-	if (cub->so)
-		free(cub->so);
-	if (cub->we)
-		free(cub->we);
-	if (cub->ea)
-		free(cub->ea);
-	if (cub->f)
-		free(cub->f);
-	if (cub->c)
-		free(cub->c);
+	free(cub->no);
+	free(cub->so);
+	free(cub->we);
+	free(cub->ea);
+	free(cub->f);
+	free(cub->c);
 }
 
 void	error_message(char *message, int ret)

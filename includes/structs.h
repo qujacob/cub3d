@@ -10,6 +10,7 @@ struct s_cub
 	char	**map;
 	int		size_x;
 	int		size_y;
+	char	player;
 	char	*no;
 	char	*so;
 	char	*we;
