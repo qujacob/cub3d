@@ -4,7 +4,11 @@ SRCDIR = 	./srcs/
 OBJDIR =	./objs/
 INCDIR =	./includes/
 
-SRCS =		cub3d.c parsing.c parsing_map.c errors.c
+SRCS =		cub3d.c \
+			parsing.c \
+			parsing_map.c \
+			parsing_valid.c \
+			errors.c
 
 INCLUDES = -I$(INCDIR) -Ilibft/$(INCDIR) -Imlx
 OBJS =		$(SRCS:.c=.o)

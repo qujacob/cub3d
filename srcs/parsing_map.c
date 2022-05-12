@@ -1,17 +1,5 @@
 #include "cub3d.h"
 
-void	check_validity(t_cub *cub)
-{
-	int	j;
-
-	j = -1;
-	while (++j < cub->size_y)
-	{
-	if (!check_is_map(cub->map[j]))
-		break ;
-	}
-}
-
 void	create_map(t_cub *cub)
 {
 	int	x;
@@ -69,7 +57,7 @@ int	check_is_map(char *line)
 	{
 		if (line[i] != ' ' && line[i] != '0' && line[i] != '1' && \
 		line[i] != 'N' && line[i] != 'S' && line[i] != 'E' && line[i] != 'W')
-			return (0);
+			return (-1);
 		i++;
 	}
 	return (1);
@@ -81,8 +69,8 @@ int	fill_map(t_cub *cub, char **line)
 	int	j;
 
 	j = -1;
-	if (!check_is_map(*line))
-		return (0);
+	if (check_is_map(*line) < 1)
+		return (check_is_map(*line));
 	create_map(cub);
 	while (*line && ++j < cub->size_y)
 	{
@@ -91,7 +79,7 @@ int	fill_map(t_cub *cub, char **line)
 		{
 			if (i >= (int)ft_strlen(*line) || (*line)[i] == ' ' \
 			|| (*line)[i] == '\n')
-				cub->map[j][i] = '3';
+				cub->map[j][i] = ' ';
 			else if ((*line)[i] != '\n')
 				cub->map[j][i] = (*line)[i];
 		}

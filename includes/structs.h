@@ -1,7 +1,9 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-typedef struct s_cub
+typedef struct s_cub t_cub;
+
+struct s_cub
 {
 	char	*file;
 	int		fd;
@@ -14,6 +16,6 @@ typedef struct s_cub
 	char	*ea;
 	char	*f;
 	char	*c;
-}	t_cub;
+};
 
 #endif
