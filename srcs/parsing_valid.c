@@ -31,17 +31,18 @@ int	check_colors(char *color)
 
 void	check_elem(t_cub *cub)
 {
-	if (!cub->no || !cub->so || !cub->we || !cub->ea)
+	if (!cub->wall->no || !cub->wall->so || !cub->wall->we || \
+	!cub->wall->ea || !cub->wall->f || !cub->wall->c)
 		free_message(cub, "Error : Textures.\n", 1);
-	if (open(cub->no, O_RDONLY) == -1)
+	if (open(cub->wall->no, O_RDONLY | __O_NOFOLLOW) == -1)
 		free_message(cub, "Error : Textures.\n", 1);
-	if (open(cub->so, O_RDONLY) == -1)
+	if (open(cub->wall->so, O_RDONLY | __O_NOFOLLOW) == -1)
 		free_message(cub, "Error : Textures.\n", 1);
-	if (open(cub->we, O_RDONLY) == -1)
+	if (open(cub->wall->we, O_RDONLY | __O_NOFOLLOW) == -1)
 		free_message(cub, "Error : Textures.\n", 1);
-	if (open(cub->ea, O_RDONLY) == -1)
+	if (open(cub->wall->ea, O_RDONLY | __O_NOFOLLOW) == -1)
 		free_message(cub, "Error : Textures.\n", 1);
-	if (!check_colors(cub->f) || !check_colors(cub->c))
+	if (!check_colors(cub->wall->f) || !check_colors(cub->wall->c))
 		free_message(cub, "Error : Colors.\n", 1);
 }
 

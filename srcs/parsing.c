@@ -4,26 +4,26 @@ void	do_elem_2(t_cub *cub, char *line)
 {
 	if (!ft_strncmp("EA ", line, 3))
 	{
-		if (cub->ea)
+		if (cub->wall->ea)
 			free_message(cub, "Error : Double.\n", 1);
-		cub->ea = ft_strdup_no_nl(&line[3]);
-		if (!cub->ea)
+		cub->wall->ea = ft_strdup_no_nl(&line[3]);
+		if (!cub->wall->ea)
 			free_message(cub, "Error : Parsing\n", 1);
 	}
 	else if (!ft_strncmp("F ", line, 2))
 	{
-		if (cub->f)
+		if (cub->wall->f)
 			free_message(cub, "Error : Double.\n", 1);
-		cub->f = ft_strdup_no_nl(&line[2]);
-		if (!cub->f)
+		cub->wall->f = ft_strdup_no_nl(&line[2]);
+		if (!cub->wall->f)
 			free_message(cub, "Error : Parsing\n", 1);
 	}
 	else if (!ft_strncmp("C ", line, 2))
 	{
-		if (cub->c)
+		if (cub->wall->c)
 			free_message(cub, "Error : Double.\n", 1);
-		cub->c = ft_strdup_no_nl(&line[2]);
-		if (!cub->c)
+		cub->wall->c = ft_strdup_no_nl(&line[2]);
+		if (!cub->wall->c)
 			free_message(cub, "Error : Parsing\n", 1);
 	}
 }
@@ -32,26 +32,26 @@ void	do_elem(t_cub *cub, char *line)
 {
 	if (!ft_strncmp("NO ", line, 3))
 	{
-		if (cub->no)
+		if (cub->wall->no)
 			free_message(cub, "Error : Double.\n", 1);
-		cub->no = ft_strdup_no_nl(&line[3]);
-		if (!cub->no)
+		cub->wall->no = ft_strdup_no_nl(&line[3]);
+		if (!cub->wall->no)
 			free_message(cub, "Error : Parsing\n", 1);
 	}
 	else if (!ft_strncmp("SO ", line, 3))
 	{
-		if (cub->so)
+		if (cub->wall->so)
 			free_message(cub, "Error : Double.\n", 1);
-		cub->so = ft_strdup_no_nl(&line[3]);
-		if (!cub->so)
+		cub->wall->so = ft_strdup_no_nl(&line[3]);
+		if (!cub->wall->so)
 			free_message(cub, "Error : Parsing\n", 1);
 	}
 	else if (!ft_strncmp("WE ", line, 3))
 	{
-		if (cub->we)
+		if (cub->wall->we)
 			free_message(cub, "Error : Double.\n", 1);
-		cub->we = ft_strdup_no_nl(&line[3]);
-		if (!cub->we)
+		cub->wall->we = ft_strdup_no_nl(&line[3]);
+		if (!cub->wall->we)
 			free_message(cub, "Error : Parsing\n", 1);
 	}
 	do_elem_2(cub, line);
