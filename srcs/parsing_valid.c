@@ -40,11 +40,37 @@ void	check_elem(t_cub *cub)
 	if (open(cub->we, O_RDONLY) == -1)
 		free_message(cub, "Error : Textures.\n", 1);
 	if (open(cub->ea, O_RDONLY) == -1)
-	{
 		free_message(cub, "Error : Textures.\n", 1);
-	}
 	if (!check_colors(cub->f) || !check_colors(cub->c))
 		free_message(cub, "Error : Colors.\n", 1);
+}
+
+int		is_a_player(char c)
+{
+	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+		return (1);
+	return (0);
+}
+
+void	check_map_valid(t_cub *cub, int j, int i)
+{
+	if (cub->player && is_a_player(cub->map[j][i]))
+		free_message(cub, "Error : Multiplayer declaration.\n", 1);
+	if (is_a_player(cub->map[j][i]))
+		cub->player = cub->map[j][i];
+	if (cub->map[j][i] == ' ')
+	{
+		if (i != 0 && (cub->map[j][i - 1] != '1' && cub->map[j][i - 1] != ' '))
+			free_message(cub, "Error : Wall Not Closed.\n", 1);
+		if (i != cub->size_x - 1 && (cub->map[j][i + 1] != '1' && \
+		cub->map[j][i + 1] != ' '))
+			free_message(cub, "Error : Wall Not Closed.\n", 1);
+		if (j != 0 && (cub->map[j - 1][i] != '1' && cub->map[j - 1][i] != ' '))
+			free_message(cub, "Error : Wall Not Closed.\n", 1);
+		if (j != cub->size_y - 1 && (cub->map[j + 1][i] != '1' && \
+		cub->map[j + 1][i] != ' '))
+			free_message(cub, "Error : Wall Not Closed.\n", 1);
+	}
 }
 
 void	check_validity(t_cub *cub)
@@ -62,8 +88,8 @@ void	check_validity(t_cub *cub)
 	{
 		i = -1;
 		while (++i < cub->size_x)
-		{
-			break ;
-		}
+			check_map_valid(cub, j, i);
 	}
+	if (!cub->player)
+		free_message(cub, "Error : No Player.\n", 1);
 }
