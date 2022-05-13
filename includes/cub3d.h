@@ -54,12 +54,17 @@ int	    recove_x_size(t_cub *cub);
 int	    check_is_map(char *line);
 int	    fill_map(t_cub *cub, char **line);
 
+int		is_a_player(char c);
 void    check_validity(t_cub *cub);
+
+int		quit(t_cub *cub);
+int		select_action(int key, t_cub *cub);
 
 void    free_cub(t_cub *cub);
 void	error_message(char *message, int ret);
 void	free_message(t_cub *cub, char *message, int ret);
 
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 char	*ft_strdup_no_nl(char *str);
 
 #endif

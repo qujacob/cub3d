@@ -26,9 +26,11 @@ void	free_cub(t_cub *cub)
 	}
 	if (cub->mlx)
 	{
-		free(cub->mlx->mlx_ptr);
+		free(cub->mlx->ptr);
 		free(cub->mlx);
 	}
+	if (cub->img)
+		free(cub->img);
 }
 
 void	error_message(char *message, int ret)

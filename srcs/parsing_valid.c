@@ -46,7 +46,7 @@ void	check_elem(t_cub *cub)
 		free_message(cub, "Error : Colors.\n", 1);
 }
 
-int		is_a_player(char c)
+int	is_a_player(char c)
 {
 	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
 		return (1);

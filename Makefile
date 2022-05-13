@@ -8,6 +8,7 @@ SRCS =		cub3d.c \
 			parsing.c \
 			parsing_map.c \
 			parsing_valid.c \
+			keyhook.c \
 			utils.c \
 			errors.c
 
