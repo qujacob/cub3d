@@ -22,6 +22,8 @@ void	free_cub(t_cub *cub)
 		free(cub->wall->ea);
 		free(cub->wall->f);
 		free(cub->wall->c);
+		free(cub->wall->f_tab);
+		free(cub->wall->c_tab);
 		free(cub->wall);
 	}
 	if (cub->mlx)

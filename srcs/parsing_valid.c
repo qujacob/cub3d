@@ -1,5 +1,32 @@
 #include "cub3d.h"
 
+int	set_colors(t_wall *wall)
+{
+	int	i;
+	int	j;
+	int	k;
+
+	wall->f_tab = malloc(sizeof(int) * 3);
+	wall->c_tab = malloc(sizeof(int) * 3);
+	if (!wall->f_tab || !wall->c_tab)
+		return (0);
+	i = -1;
+	j = 0;
+	k = 0;
+	while (++i < 3)
+	{
+		wall->f_tab[i] = ft_atoi(&wall->f[j]);
+		wall->c_tab[i] = ft_atoi(&wall->c[k]);
+		while (ft_isdigit(wall->f[j]))
+			j++;
+		while (ft_isdigit(wall->c[k]))
+			k++;
+		j++;
+		k++;
+	}
+	return (1);
+}
+
 int	check_colors(char *color)
 {
 	int	i;
@@ -14,7 +41,7 @@ int	check_colors(char *color)
 	coma = 0;
 	while (color[i])
 	{
-		if (ft_atoi(&color[i]) > 225 || color[i] == ',')
+		if (ft_atoi(&color[i]) > 255 || color[i] == ',')
 			return (0);
 		while (ft_isdigit(color[i]))
 			i++;
@@ -44,13 +71,8 @@ void	check_elem(t_cub *cub)
 		free_message(cub, "Error : Textures.\n", 1);
 	if (!check_colors(cub->wall->f) || !check_colors(cub->wall->c))
 		free_message(cub, "Error : Colors.\n", 1);
-}
-
-int	is_a_player(char c)
-{
-	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
-		return (1);
-	return (0);
+	if (!set_colors(cub->wall))
+		free_message(cub, "Error : Parsing.\n", 1);
 }
 
 void	check_map_valid(t_cub *cub, int j, int i)

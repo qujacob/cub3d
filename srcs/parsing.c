@@ -112,7 +112,7 @@ void	parse_file(t_cub *cub)
 	cub->size_x = recove_x_size(cub);
 	get_file(cub);
 	check_validity(cub);
-	for (int i = 0; cub->map[i]; i++)
-		printf("%s\n", cub->map[i]);
+	// for (int i = 0; cub->map[i]; i++)
+	// 	printf("%s\n", cub->map[i]);
 	close(cub->fd);
 }

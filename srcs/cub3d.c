@@ -31,17 +31,17 @@ void	draw(t_cub *cub)
 		while (++i < cub->size_x)
 		{
 			four = -1;
-			while (++four < 20)
+			while (++four < 10)
 			{
 				five = -1;
-				while (++five < 20)
+				while (++five < 10)
 				{
 					if (cub->map[j][i] == '1')
-						my_mlx_pixel_put(cub->img, (20 * i) + five, (20 * j) + four, 0x00FF0000);
+						my_mlx_pixel_put(cub->img, (10 * i) + five, (10 * j) + four, 0x00FF0000);
 					else if (cub->map[j][i] == '0')
-						my_mlx_pixel_put(cub->img, (20 * i) + five, (20 * j) + four, 0x00FFFFFF);
+						my_mlx_pixel_put(cub->img, (10 * i) + five, (10 * j) + four, 0x00FFFFFF);
 					else if (is_a_player(cub->map[j][i]))
-						my_mlx_pixel_put(cub->img, (20 * i) + five, (20 * j) + four, 0x00FFFF00);
+						my_mlx_pixel_put(cub->img, (10 * i) + five, (10 * j) + four, 0x00FFFF00);
 				}
 			}
 		}

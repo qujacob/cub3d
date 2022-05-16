@@ -49,12 +49,13 @@
 void	parse_file(t_cub *cub);
 int	    check_is_elem(char *line);
 
+int		is_a_player(char c);
 void	create_map(t_cub *cub);
 int	    recove_x_size(t_cub *cub);
 int	    check_is_map(char *line);
 int	    fill_map(t_cub *cub, char **line);
 
-int		is_a_player(char c);
+
 void    check_validity(t_cub *cub);
 
 int		quit(t_cub *cub);

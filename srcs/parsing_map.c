@@ -1,5 +1,12 @@
 #include "cub3d.h"
 
+int	is_a_player(char c)
+{
+	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+		return (1);
+	return (0);
+}
+
 void	create_map(t_cub *cub)
 {
 	int	x;

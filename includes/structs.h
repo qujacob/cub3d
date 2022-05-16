@@ -45,6 +45,8 @@ struct s_wall
 	char	*ea;
 	char	*f;
 	char	*c;
+	int		*f_tab;
+	int		*c_tab;
 };
 
 #endif
