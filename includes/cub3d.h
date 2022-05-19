@@ -55,8 +55,10 @@ int	    recove_x_size(t_cub *cub);
 int	    check_is_map(char *line);
 int	    fill_map(t_cub *cub, char **line);
 
-
 void    check_validity(t_cub *cub);
+
+void	draw(t_cub *cub);
+void	put_in_display(t_cub *cub, int x);
 
 int		quit(t_cub *cub);
 int		select_action(int key, t_cub *cub);

@@ -80,7 +80,11 @@ void	check_map_valid(t_cub *cub, int j, int i)
 	if (cub->player && is_a_player(cub->map[j][i]))
 		free_message(cub, "Error : Multiplayer declaration.\n", 1);
 	if (is_a_player(cub->map[j][i]))
+	{
 		cub->player = cub->map[j][i];
+		cub->man.pos.x = i + 0.5;
+		cub->man.pos.y = j + 0.5;
+	}
 	if (cub->map[j][i] == ' ')
 	{
 		if (i != 0 && (cub->map[j][i - 1] != '1' && cub->map[j][i - 1] != ' '))
