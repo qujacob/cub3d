@@ -1,6 +1,7 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+
 typedef struct s_cub t_cub;
 typedef struct s_img t_img;
 typedef struct s_mlx t_mlx;
@@ -9,7 +10,6 @@ typedef struct s_vec t_vec;
 typedef struct s_man t_man;
 typedef struct s_ray t_ray;
 typedef enum e_side	t_side;
-
 
 enum e_side
 {
@@ -45,7 +45,7 @@ struct s_ray
 	int		mapx;
 	int		mapy;
 	int		stepx;
-    int		stepy;
+	int		stepy;
 	t_vec	side_dist;
 	t_vec	delta_dist;
 	double	wall_dist;
@@ -54,6 +54,7 @@ struct s_ray
 	int		line_height;
 	int		wall_start;
 	int		wall_end;
+
 	double	wall_x;
 };
 
@@ -62,6 +63,8 @@ struct s_man
 	t_vec	pos;
 	t_vec	plane;
 	t_vec	dir;
+	double	movespeed;
+	double	rotspeed;
 };
 
 struct s_mlx
@@ -101,6 +104,12 @@ struct s_cub
 	t_img	img;
 	t_ray	ray;
 	t_man	man;
+	int		key_w;
+	int		key_s;
+	int		key_d;
+	int		key_a;
+	int		key_l;
+	int		key_r;
 };
 
 #endif

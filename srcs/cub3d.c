@@ -15,6 +15,12 @@ void	init_cub(t_cub *cub, char *file)
 	cub->man.dir.y = 1;
 	cub->man.plane.x = 0.66;
 	cub->man.plane.y = 0;
+	cub->man.movespeed = 0.4;
+	cub->man.rotspeed = 0.4;
+	cub->key_w = 0;
+	cub->key_s = 0;
+	cub->key_a = 0;
+	cub->key_d = 0;
 }
 
 void	xpm_to_img(t_cub *cub, t_img *img, char *path)
@@ -37,7 +43,6 @@ void	set_walls(t_cub *cub)
 	xpm_to_img(cub, &cub->wall->east, cub->wall->ea);
 }
 
-
 void	open_cub3d(t_cub *cub)
 {
 	cub->mlx->ptr = mlx_init();
@@ -45,13 +50,15 @@ void	open_cub3d(t_cub *cub)
 		free_message(cub, "Error : Couldn't initialize MLX. Try again.\n", 1);
 	cub->mlx->win = mlx_new_window(cub->mlx->ptr, cub->mlx->win_w, \
 	cub->mlx->win_h, "CUB3D");
-	mlx_hook(cub->mlx->win, 2, 1L<<0, select_action, cub);
-	mlx_hook(cub->mlx->win, 17, 1L<<17, quit, cub);
+	mlx_hook(cub->mlx->win, 17, 1L << 17, quit, cub);
 	cub->img.img = mlx_new_image(cub->mlx->ptr, cub->mlx->win_w, \
 	cub->mlx->win_h);
 	cub->img.addr = mlx_get_data_addr(cub->img.img, &cub->img.bpp, \
 	&cub->img.line, &cub->img.endian);
 	set_walls(cub);
+	mlx_hook(cub->mlx->win, 2, 1L << 0, select_action, cub);
+	mlx_hook(cub->mlx->win, 3, 1L << 1, key_released, cub);
+	mlx_loop_hook(cub->mlx->ptr, key_pressed, cub);
 	draw(cub);
 	mlx_put_image_to_window(cub->mlx->ptr, cub->mlx->win, cub->img.img, 0, 0);
 	mlx_destroy_image(cub->mlx->ptr, cub->img.img);
