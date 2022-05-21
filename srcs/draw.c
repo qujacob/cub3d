@@ -8,9 +8,6 @@ void	wall_dist(t_cub *cub)
 	else if (cub->ray.side == NO || cub->ray.side == SO)
 		cub->ray.wall_dist = (cub->ray.mapy - cub->man.pos.y
 				+ (1 - cub->ray.stepy) / 2) / cub->ray.dir.y;
-	// printf("pos y = %f | ray mapy = %d | stepy = %d | raydir y = %f\n", cub->man.pos.y, cub->ray.mapy, cub->ray.stepy,  cub->ray.dir.y);
-	// if (cub->ray.wall_dist == 0.0)
-		// cub->ray.wall_dist = cub->ray.dir.y;
 	cub->ray.line_height = (int)(cub->mlx->win_h / cub->ray.wall_dist);
 	cub->ray.wall_start = -cub->ray.line_height / 2 + cub->mlx->win_h / 2;
 	cub->ray.wall_end = cub->ray.line_height / 2 + cub->mlx->win_h / 2;

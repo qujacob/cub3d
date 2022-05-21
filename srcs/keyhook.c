@@ -5,6 +5,14 @@ int	quit(t_cub *cub)
 	if (cub->mlx->ptr)
 	{
 		if (cub->mlx->win)
+		{
+			if (cub->img.img)
+				mlx_destroy_image(cub->mlx->ptr, cub->img.img);
+			mlx_destroy_image(cub->mlx->ptr, cub->wall->north.img);
+			mlx_destroy_image(cub->mlx->ptr, cub->wall->south.img);
+			mlx_destroy_image(cub->mlx->ptr, cub->wall->west.img);
+			mlx_destroy_image(cub->mlx->ptr, cub->wall->east.img);	
+		}
 			mlx_destroy_window(cub->mlx->ptr, cub->mlx->win);
 		mlx_destroy_display(cub->mlx->ptr);
 	}
@@ -40,11 +48,8 @@ int	key_hook(t_cub *cub)
 	return (0);
 }
 
-int	key_pressed(int key, t_cub *cub)
+int	key_pressed(t_cub *cub)
 {
-
-	(void)key;
-	printf("%d\n", cub->key_a);
 	key_hook(cub);
 	draw(cub);
 	return (0);
@@ -52,7 +57,7 @@ int	key_pressed(int key, t_cub *cub)
 
 int	key_released(int key, t_cub *cub)
 {
-		if (key == K_W)
+	if (key == K_W)
 		cub->key_w = 0;
 	else if (key == K_S)
 		cub->key_s = 0;

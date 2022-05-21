@@ -66,7 +66,7 @@ void	put_in_display(t_cub *cub, int x);
 
 int		quit(t_cub *cub);
 int		select_action(int key, t_cub *cub);
-int		key_pressed(int key, t_cub *cub);
+int		key_pressed(t_cub *cub);
 int		key_released(int key, t_cub *cub);
 
 void	free_cub(t_cub *cub);
@@ -80,4 +80,5 @@ void	go_forward(t_cub *cub);
 void	go_backward(t_cub *cub);
 void	go_left(t_cub *cub);
 void	go_right(t_cub *cub);
+
 #endif
