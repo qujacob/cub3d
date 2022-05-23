@@ -6,7 +6,7 @@
 /*   By: qujacob <qujacob@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 17:08:59 by qujacob           #+#    #+#             */
-/*   Updated: 2022/05/23 17:09:38 by qujacob          ###   ########.fr       */
+/*   Updated: 2022/05/23 17:15:01 by qujacob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,10 +117,10 @@ void	parse_file(t_cub *cub)
 
 	needle = ft_strstr(cub->file, ".cub");
 	if (!needle || ft_strcmp(needle, ".cub"))
-		error_message("Error : Invalid map name.\n", 1);
+		free_message(cub, "Error : Invalid map name.\n", 1);
 	cub->fd = open(cub->file, O_RDWR);
 	if (cub->fd == -1)
-		error_message("Error : File doesn't exist.\n", 1);
+		free_message(cub, "Error : File doesn't exist.\n", 1);
 	cub->size_x = recove_x_size(cub);
 	get_file(cub);
 	check_validity(cub);
