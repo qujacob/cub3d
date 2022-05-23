@@ -80,5 +80,9 @@ void	go_forward(t_cub *cub);
 void	go_backward(t_cub *cub);
 void	go_left(t_cub *cub);
 void	go_right(t_cub *cub);
+void	set_player_pos(t_cub *cub);
+
+void	rot_left(t_cub *cub);
+void	rot_right(t_cub *cub);
 
 #endif

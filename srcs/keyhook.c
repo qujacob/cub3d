@@ -32,6 +32,10 @@ int	select_action(int key, t_cub *cub)
 		cub->key_a = 1;
 	else if (key == K_D)
 		cub->key_d = 1;
+	else if (key == LEFT)
+		cub->key_l = 1;
+	else if (key == RIGHT)
+		cub->key_r = 1;
 	return (0);
 }
 
@@ -45,6 +49,10 @@ int	key_hook(t_cub *cub)
 		go_left(cub);
 	else if (cub->key_d == 1)
 		go_right(cub);
+	else if (cub->key_l == 1)
+		rot_left(cub);
+	else if (cub->key_r == 1)
+		rot_right(cub); 
 	return (0);
 }
 
@@ -65,5 +73,9 @@ int	key_released(int key, t_cub *cub)
 		cub->key_a = 0;
 	else if (key == K_D)
 		cub->key_d = 0;
+	else if (key == LEFT)
+		cub->key_l = 0;
+	else if (key == RIGHT)
+		cub->key_r = 0;
 	return (0);
 }

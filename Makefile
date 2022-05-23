@@ -12,9 +12,9 @@ SRCS =		cub3d.c \
 			draw_2.c \
 			keyhook.c \
 			utils.c \
-			errors.c\
-			pl_move.c\
-			cam_move.c
+			errors.c \
+			pl_rot.c \
+			pl_move.c
 
 INCLUDES = -I$(INCDIR) -Ilibft/$(INCDIR) -Imlx
 OBJS =		$(SRCS:.c=.o)

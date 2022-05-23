@@ -11,12 +11,8 @@ void	init_cub(t_cub *cub, char *file)
 	if (!cub->mlx)
 		free_message(cub, "Error : Malloc.\n", 1);
 	*cub->mlx = (t_mlx){.win_w = 1920, .win_h = 1080};
-	cub->man.dir.x = 0;
-	cub->man.dir.y = 1;
-	cub->man.plane.x = 0.66;
-	cub->man.plane.y = 0;
-	cub->man.movespeed = 0.4;
-	cub->man.rotspeed = 0.4;
+	cub->man.movespeed = 0.26000001;
+	cub->man.rotspeed = 0.1;
 	cub->key_w = 0;
 	cub->key_s = 0;
 	cub->key_a = 0;
@@ -51,6 +47,7 @@ void	open_cub3d(t_cub *cub)
 	cub->mlx->win = mlx_new_window(cub->mlx->ptr, cub->mlx->win_w, \
 	cub->mlx->win_h, "CUB3D");
 	set_walls(cub);
+	set_player_pos(cub);
 	cub->img.img = mlx_new_image(cub->mlx->ptr, cub->mlx->win_w, \
 	cub->mlx->win_h);
 	cub->img.addr = mlx_get_data_addr(cub->img.img, &cub->img.bpp, \
