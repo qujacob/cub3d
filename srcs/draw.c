@@ -6,7 +6,7 @@
 /*   By: qujacob <qujacob@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 17:08:44 by qujacob           #+#    #+#             */
-/*   Updated: 2022/05/23 17:08:45 by qujacob          ###   ########.fr       */
+/*   Updated: 2022/05/23 18:03:32 by qujacob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	wall_dist(t_cub *cub)
 	cub->ray.line_height = (int)(cub->mlx->win_h / cub->ray.wall_dist);
 	cub->ray.wall_start = -cub->ray.line_height / 2 + cub->mlx->win_h / 2;
 	cub->ray.wall_end = cub->ray.line_height / 2 + cub->mlx->win_h / 2;
-	if (cub->ray.side == 2 || cub->ray.side == 3)
+	if (cub->ray.side == WE || cub->ray.side == EA)
 		cub->ray.wall_x = cub->man.pos.y + cub->ray.wall_dist
 			* cub->ray.dir.y;
 	else

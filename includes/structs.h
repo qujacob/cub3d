@@ -6,28 +6,27 @@
 /*   By: qujacob <qujacob@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 17:09:02 by qujacob           #+#    #+#             */
-/*   Updated: 2022/05/23 17:09:23 by qujacob          ###   ########.fr       */
+/*   Updated: 2022/05/23 18:05:37 by qujacob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-
-typedef struct s_cub t_cub;
-typedef struct s_img t_img;
-typedef struct s_mlx t_mlx;
-typedef struct s_wall t_wall;
-typedef struct s_vec t_vec;
-typedef struct s_man t_man;
-typedef struct s_ray t_ray;
-typedef enum e_side	t_side;
+typedef struct s_cub	t_cub;
+typedef struct s_img	t_img;
+typedef struct s_mlx	t_mlx;
+typedef struct s_wall	t_wall;
+typedef struct s_vec	t_vec;
+typedef struct s_man	t_man;
+typedef struct s_ray	t_ray;
+typedef enum e_side		t_side;
 
 enum e_side
 {
 	NO,
-	EA,
 	SO,
+	EA,
 	WE
 };
 

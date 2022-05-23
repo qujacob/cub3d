@@ -6,7 +6,7 @@
 /*   By: qujacob <qujacob@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 17:09:51 by qujacob           #+#    #+#             */
-/*   Updated: 2022/05/23 17:09:51 by qujacob          ###   ########.fr       */
+/*   Updated: 2022/05/23 17:39:27 by qujacob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,19 @@ void	print_minimap(t_cub *cub, int i, int j)
 	int	y;
 
 	y = -1;
-	while (++y < 10)
+	while (++y < 5)
 	{
 		x = -1;
-		while (++x < 10)
+		while (++x < 5)
 		{
 			if (cub->map[j][i] == '1')
-				my_mlx_pixel_put(&(cub->img), (10 * i) + x, (10 * j) + y, \
+				my_mlx_pixel_put(&(cub->img), (5 * i) + x, (5 * j) + y, \
 				0x00707078);
 			else if (cub->map[j][i] == '0' || is_a_player(cub->map[j][i]))
-				my_mlx_pixel_put(&(cub->img), (10 * i) + x, (10 * j) + y, \
+				my_mlx_pixel_put(&(cub->img), (5 * i) + x, (5 * j) + y, \
 				0x00CDE6F5);
-			my_mlx_pixel_put(&(cub->img), (10 * cub->man.pos.x) + x / 2, \
-			(10 * cub->man.pos.y) + y / 2, 0x00FF0000);
+			my_mlx_pixel_put(&(cub->img), (5 * cub->man.pos.x) + x / 2, \
+			(5 * cub->man.pos.y) + y / 2, 0x00FF0000);
 		}
 	}
 }
