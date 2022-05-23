@@ -14,7 +14,8 @@ SRCS =		cub3d.c \
 			utils.c \
 			errors.c \
 			pl_rot.c \
-			pl_move.c
+			pl_move.c \
+			minimap.c
 
 INCLUDES = -I$(INCDIR) -Ilibft/$(INCDIR) -Imlx
 OBJS =		$(SRCS:.c=.o)

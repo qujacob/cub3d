@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qujacob <qujacob@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/23 17:08:52 by qujacob           #+#    #+#             */
+/*   Updated: 2022/05/23 17:09:35 by qujacob          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -63,6 +75,7 @@ void	check_validity(t_cub *cub);
 
 void	draw(t_cub *cub);
 void	put_in_display(t_cub *cub, int x);
+void	minimap(t_cub *cub);
 
 int		quit(t_cub *cub);
 int		select_action(int key, t_cub *cub);

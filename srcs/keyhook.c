@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   keyhook.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qujacob <qujacob@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/23 17:08:56 by qujacob           #+#    #+#             */
+/*   Updated: 2022/05/23 17:09:36 by qujacob          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	quit(t_cub *cub)
@@ -11,9 +23,9 @@ int	quit(t_cub *cub)
 			mlx_destroy_image(cub->mlx->ptr, cub->wall->north.img);
 			mlx_destroy_image(cub->mlx->ptr, cub->wall->south.img);
 			mlx_destroy_image(cub->mlx->ptr, cub->wall->west.img);
-			mlx_destroy_image(cub->mlx->ptr, cub->wall->east.img);	
+			mlx_destroy_image(cub->mlx->ptr, cub->wall->east.img);
 		}
-			mlx_destroy_window(cub->mlx->ptr, cub->mlx->win);
+		mlx_destroy_window(cub->mlx->ptr, cub->mlx->win);
 		mlx_destroy_display(cub->mlx->ptr);
 	}
 	free_message(cub, "Goodbye !\n", 0);
@@ -52,7 +64,7 @@ int	key_hook(t_cub *cub)
 	else if (cub->key_l == 1)
 		rot_left(cub);
 	else if (cub->key_r == 1)
-		rot_right(cub); 
+		rot_right(cub);
 	return (0);
 }
 

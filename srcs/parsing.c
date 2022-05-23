@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qujacob <qujacob@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/23 17:08:59 by qujacob           #+#    #+#             */
+/*   Updated: 2022/05/23 17:09:38 by qujacob          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	do_elem_2(t_cub *cub, char *line)
@@ -112,7 +124,5 @@ void	parse_file(t_cub *cub)
 	cub->size_x = recove_x_size(cub);
 	get_file(cub);
 	check_validity(cub);
-	// for (int i = 0; cub->map[i]; i++)
-	// 	printf("%s\n", cub->map[i]);
 	close(cub->fd);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qujacob <qujacob@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/23 17:08:44 by qujacob           #+#    #+#             */
+/*   Updated: 2022/05/23 17:08:45 by qujacob          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	wall_dist(t_cub *cub)
@@ -97,38 +109,6 @@ void	draw(t_cub *cub)
 		put_in_display(cub, x);
 		x++;
 	}
+	minimap(cub);
 	mlx_put_image_to_window(cub->mlx->ptr, cub->mlx->win, cub->img.img, 0, 0);
 }
-
-// MINIMAP
-
-// void	draw(t_cub *cub)
-// {
-// 	int	j;
-// 	int	i;
-// 	int	four;
-// 	int	five;
-
-// 	j = -1;
-// 	while (++j < cub->size_y)
-// 	{
-// 		i = -1;
-// 		while (++i < cub->size_x)
-// 		{
-// 			four = -1;
-// 			while (++four < 10)
-// 			{
-// 				five = -1;
-// 				while (++five < 10)
-// 				{
-// 					if (cub->map[j][i] == '1')
-// 						my_mlx_pixel_put(&(cub->img), (10 * i) + five, (10 * j) + four, 0x00FF0000);
-// 					else if (cub->map[j][i] == '0')
-// 						my_mlx_pixel_put(&(cub->img), (10 * i) + five, (10 * j) + four, 0x00FFFFFF);
-// 					else if (is_a_player(cub->map[j][i]))
-// 						my_mlx_pixel_put(&(cub->img), (10 * i) + five, (10 * j) + four, 0x00FFFF00);
-// 				}
-// 			}
-// 		}
-// 	}
-// }

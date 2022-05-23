@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   errors.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qujacob <qujacob@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/23 17:08:55 by qujacob           #+#    #+#             */
+/*   Updated: 2022/05/23 17:09:35 by qujacob          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	free_map(char **map)
@@ -31,8 +43,6 @@ void	free_cub(t_cub *cub)
 		free(cub->mlx->ptr);
 		free(cub->mlx);
 	}
-	// if (cub->img)
-	// 	free(cub->img);
 }
 
 void	error_message(char *message, int ret)

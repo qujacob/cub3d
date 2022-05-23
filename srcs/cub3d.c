@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qujacob <qujacob@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/23 17:08:38 by qujacob           #+#    #+#             */
+/*   Updated: 2022/05/23 17:09:26 by qujacob          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	init_cub(t_cub *cub, char *file)
@@ -11,7 +23,7 @@ void	init_cub(t_cub *cub, char *file)
 	if (!cub->mlx)
 		free_message(cub, "Error : Malloc.\n", 1);
 	*cub->mlx = (t_mlx){.win_w = 1920, .win_h = 1080};
-	cub->man.movespeed = 0.26000001;
+	cub->man.movespeed = 0.27;
 	cub->man.rotspeed = 0.1;
 	cub->key_w = 0;
 	cub->key_s = 0;

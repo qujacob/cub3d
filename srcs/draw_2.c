@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_2.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qujacob <qujacob@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/23 17:08:50 by qujacob           #+#    #+#             */
+/*   Updated: 2022/05/23 17:09:32 by qujacob          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	draw_rgb(t_cub *cub, int color[3], int y, int x)
@@ -5,15 +17,18 @@ void	draw_rgb(t_cub *cub, int color[3], int y, int x)
 	if (cub->img.endian == 1)
 	{
 		cub->img.addr[(x * cub->img.bpp >> 3) + y * cub->img.line] = color[0];
-		cub->img.addr[(x * cub->img.bpp >> 3) + 1 + y * cub->img.line] = color[1];
-		cub->img.addr[(x * cub->img.bpp >> 3) + 2 + y * cub->img.line] = color[2];
+		cub->img.addr[(x * cub->img.bpp >> 3) + 1 + \
+		y * cub->img.line] = color[1];
+		cub->img.addr[(x * cub->img.bpp >> 3) + 2 + \
+		y * cub->img.line] = color[2];
 	}
 	else
 	{
-		// printf("%d\n", cub->img.addr[(x * cub->img.bpp >> 3) + y * cub->img.line]);
 		cub->img.addr[(x * cub->img.bpp >> 3) + y * cub->img.line] = color[2];
-		cub->img.addr[(x * cub->img.bpp >> 3) + 1 + y * cub->img.line] = color[1];
-		cub->img.addr[(x * cub->img.bpp >> 3) + 2 + y * cub->img.line] = color[0];
+		cub->img.addr[(x * cub->img.bpp >> 3) + 1 + \
+		y * cub->img.line] = color[1];
+		cub->img.addr[(x * cub->img.bpp >> 3) + 2 + \
+		y * cub->img.line] = color[0];
 	}
 }
 
@@ -70,8 +85,6 @@ void	put_in_display(t_cub *cub, int x)
 	set_stop(cub, &start, &end);
 	while (y < start)
 	{
-		// printf("%d\n", y );
-		// printf("%d\n", start );
 		draw_rgb(cub, cub->wall->c_tab, y, x);
 		y++;
 	}
