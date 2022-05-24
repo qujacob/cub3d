@@ -6,7 +6,7 @@
 /*   By: qujacob <qujacob@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 17:09:20 by qujacob           #+#    #+#             */
-/*   Updated: 2022/05/23 17:09:38 by qujacob          ###   ########.fr       */
+/*   Updated: 2022/05/24 16:09:27 by qujacob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,17 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+int	has_nl(char *str)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i])
+		if (str[i] == '\n')
+			return (1);
+	return (0);
+}
+
 char	*ft_strdup_no_nl(char *str)
 {
 	int		i;
@@ -28,6 +39,11 @@ char	*ft_strdup_no_nl(char *str)
 
 	if (!str)
 		return (NULL);
+	if (!has_nl(str))
+	{
+		final = ft_strdup(str);
+		return (final);
+	}
 	final = malloc(sizeof(char) * ft_strlen(str));
 	if (!final)
 		return (NULL);
