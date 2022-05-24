@@ -6,7 +6,7 @@
 /*   By: qujacob <qujacob@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 17:08:52 by qujacob           #+#    #+#             */
-/*   Updated: 2022/05/23 17:09:35 by qujacob          ###   ########.fr       */
+/*   Updated: 2022/05/24 17:32:02 by qujacob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int		key_released(int key, t_cub *cub);
 void	free_cub(t_cub *cub);
 void	error_message(char *message, int ret);
 void	free_message(t_cub *cub, char *message, int ret);
+void	free_message_line(t_cub *cub, char *message, int ret, char *line);
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 char	*ft_strdup_no_nl(char *str);

@@ -6,7 +6,7 @@
 /*   By: qujacob <qujacob@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 17:08:59 by qujacob           #+#    #+#             */
-/*   Updated: 2022/05/23 17:15:01 by qujacob          ###   ########.fr       */
+/*   Updated: 2022/05/24 17:34:49 by qujacob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,26 @@ void	do_elem_2(t_cub *cub, char *line)
 	if (!ft_strncmp("EA ", line, 3))
 	{
 		if (cub->wall->ea)
-			free_message(cub, "Error : Double.\n", 1);
+			free_message_line(cub, "Error : Double.\n", 1, line);
 		cub->wall->ea = ft_strdup_no_nl(&line[3]);
 		if (!cub->wall->ea)
-			free_message(cub, "Error : Parsing\n", 1);
+			free_message_line(cub, "Error : Parsing\n", 1, line);
 	}
 	else if (!ft_strncmp("F ", line, 2))
 	{
 		if (cub->wall->f)
-			free_message(cub, "Error : Double.\n", 1);
+			free_message_line(cub, "Error : Double.\n", 1, line);
 		cub->wall->f = ft_strdup_no_nl(&line[2]);
 		if (!cub->wall->f)
-			free_message(cub, "Error : Parsing\n", 1);
+			free_message_line(cub, "Error : Parsing\n", 1, line);
 	}
 	else if (!ft_strncmp("C ", line, 2))
 	{
 		if (cub->wall->c)
-			free_message(cub, "Error : Double.\n", 1);
+			free_message_line(cub, "Error : Double.\n", 1, line);
 		cub->wall->c = ft_strdup_no_nl(&line[2]);
 		if (!cub->wall->c)
-			free_message(cub, "Error : Parsing\n", 1);
+			free_message_line(cub, "Error : Parsing\n", 1, line);
 	}
 }
 
@@ -45,26 +45,26 @@ void	do_elem(t_cub *cub, char *line)
 	if (!ft_strncmp("NO ", line, 3))
 	{
 		if (cub->wall->no)
-			free_message(cub, "Error : Double.\n", 1);
+			free_message_line(cub, "Error : Double.\n", 1, line);
 		cub->wall->no = ft_strdup_no_nl(&line[3]);
 		if (!cub->wall->no)
-			free_message(cub, "Error : Parsing\n", 1);
+			free_message_line(cub, "Error : Parsing\n", 1, line);
 	}
 	else if (!ft_strncmp("SO ", line, 3))
 	{
 		if (cub->wall->so)
-			free_message(cub, "Error : Double.\n", 1);
+			free_message_line(cub, "Error : Double.\n", 1, line);
 		cub->wall->so = ft_strdup_no_nl(&line[3]);
 		if (!cub->wall->so)
-			free_message(cub, "Error : Parsing\n", 1);
+			free_message_line(cub, "Error : Parsing\n", 1, line);
 	}
 	else if (!ft_strncmp("WE ", line, 3))
 	{
 		if (cub->wall->we)
-			free_message(cub, "Error : Double.\n", 1);
+			free_message_line(cub, "Error : Double.\n", 1, line);
 		cub->wall->we = ft_strdup_no_nl(&line[3]);
 		if (!cub->wall->we)
-			free_message(cub, "Error : Parsing\n", 1);
+			free_message_line(cub, "Error : Parsing\n", 1, line);
 	}
 	do_elem_2(cub, line);
 }

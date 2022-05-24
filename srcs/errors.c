@@ -6,11 +6,18 @@
 /*   By: qujacob <qujacob@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 17:08:55 by qujacob           #+#    #+#             */
-/*   Updated: 2022/05/23 17:09:35 by qujacob          ###   ########.fr       */
+/*   Updated: 2022/05/24 17:31:41 by qujacob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	free_message_line(t_cub *cub, char *message, int ret, char *line)
+{
+	if (line)
+		free(line);
+	free_message(cub, message, ret);
+}
 
 void	free_map(char **map)
 {
