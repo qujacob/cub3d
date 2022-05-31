@@ -6,7 +6,7 @@
 /*   By: qujacob <qujacob@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 17:08:57 by qujacob           #+#    #+#             */
-/*   Updated: 2022/05/23 17:09:36 by qujacob          ###   ########.fr       */
+/*   Updated: 2022/05/31 15:02:45 by qujacob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,9 @@ void	check_map_valid(t_cub *cub, int j, int i)
 		cub->man.pos.x = i + 0.5;
 		cub->man.pos.y = j + 0.5;
 	}
+	if (cub->map[j][i] == '0' && (i == 0 || i == cub->size_x - 1 \
+	|| j == 0 || j == cub->size_y - 1))
+		free_message(cub, "Error : Wall Not Closed.\n", 1);
 	if (cub->map[j][i] == ' ')
 	{
 		if (i != 0 && (cub->map[j][i - 1] != '1' && cub->map[j][i - 1] != ' '))
