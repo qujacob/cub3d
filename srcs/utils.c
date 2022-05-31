@@ -6,7 +6,7 @@
 /*   By: qujacob <qujacob@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 17:09:20 by qujacob           #+#    #+#             */
-/*   Updated: 2022/05/24 16:09:27 by qujacob          ###   ########.fr       */
+/*   Updated: 2022/05/31 19:40:48 by qujacob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ char	*ft_strdup_no_nl(char *str)
 
 	if (!str)
 		return (NULL);
+	while (ft_isspace(*str))
+		str++;
 	if (!has_nl(str))
 	{
 		final = ft_strdup(str);

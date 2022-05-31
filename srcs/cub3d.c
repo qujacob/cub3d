@@ -6,7 +6,7 @@
 /*   By: qujacob <qujacob@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 17:08:38 by qujacob           #+#    #+#             */
-/*   Updated: 2022/05/23 17:09:26 by qujacob          ###   ########.fr       */
+/*   Updated: 2022/05/31 19:39:42 by qujacob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,6 @@ void	init_cub(t_cub *cub, char *file)
 	*cub->mlx = (t_mlx){.win_w = 1920, .win_h = 1080};
 	cub->man.movespeed = 0.27;
 	cub->man.rotspeed = 0.1;
-	cub->key_w = 0;
-	cub->key_s = 0;
-	cub->key_a = 0;
-	cub->key_d = 0;
 }
 
 void	xpm_to_img(t_cub *cub, t_img *img, char *path)
