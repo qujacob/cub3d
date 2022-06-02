@@ -6,7 +6,7 @@
 /*   By: qujacob <qujacob@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 17:08:44 by qujacob           #+#    #+#             */
-/*   Updated: 2022/05/23 18:03:32 by qujacob          ###   ########.fr       */
+/*   Updated: 2022/06/02 13:45:59 by qujacob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	draw(t_cub *cub)
 	{
 		cub->ray.hit = FALSE;
 		cub->ray.cam.x = 2 * x / (double)cub->mlx->win_w - 1;
-		cub->ray.dir.x = cub->man.dir.x + cub->man.plane.x * cub->ray.cam.x;
+		cub->ray.dir.x = -(cub->man.dir.x + cub->man.plane.x * cub->ray.cam.x);
 		cub->ray.dir.y = cub->man.dir.y + cub->man.plane.y * cub->ray.cam.x;
 		cub->ray.hit = FALSE;
 		cub->ray.mapx = (int)cub->man.pos.x;
