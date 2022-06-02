@@ -6,7 +6,7 @@
 /*   By: qujacob <qujacob@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 17:08:57 by qujacob           #+#    #+#             */
-/*   Updated: 2022/05/31 15:05:36 by qujacob          ###   ########.fr       */
+/*   Updated: 2022/06/02 16:14:52 by qujacob          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,25 @@ int	set_colors(t_wall *wall)
 	return (1);
 }
 
-int	check_colors(char *color)
+int	check_colors(char *c)
 {
 	int	i;
 	int	coma;
 
 	i = -1;
-	while (color[++i])
-		if (!ft_isdigit(color[0]) || \
-		(!ft_isdigit(color[i]) && color[i] != ','))
+	while (c[++i])
+		if (!ft_isdigit(c[0]) || \
+		(!ft_isdigit(c[i]) && c[i] != ','))
 			return (0);
 	i = 0;
 	coma = 0;
-	while (color[i])
+	while (c[i])
 	{
-		if (ft_atoi(&color[i]) > 255 || color[i] == ',')
+		if (ft_atoi(&c[i]) > 255 || ft_atoi(&c[i]) < 0 || c[i] == ',')
 			return (0);
-		while (ft_isdigit(color[i]))
+		while (ft_isdigit(c[i]))
 			i++;
-		if (color[i])
+		if (c[i])
 		{
 			i++;
 			coma++;
