@@ -3,4 +3,4 @@ Nous devions reproduire une technique de rendu utilisee dans les jeux comme Doom
 
 Rendu en jeu :
 
-![alt text](https://github.com/qujacob/cub3d/game_render.png)
+![alt text](https://github.com/qujacob/cub3d/blob/master/game_render.png)
